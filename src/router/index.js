@@ -1,14 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import SpellExplorer from "../views/SpellExplorer.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/vue",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/spellbook",
+    name: "spellbook",
+    component: SpellExplorer,
   },
   {
     path: "/about",

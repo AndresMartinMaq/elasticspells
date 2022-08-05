@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
+      <router-link to="/spellbook">Home</router-link>
       <router-link to="/about">About</router-link>
+      <router-link to="/vue">About Vue</router-link>
     </nav>
     <router-view />
   </div>
@@ -18,11 +19,13 @@
 }
 
 nav {
-  padding: 30px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 
   a {
     font-weight: bold;
     color: #2c3e50;
+    padding: 0.5em;
 
     &.router-link-exact-active {
       color: #42b983;
