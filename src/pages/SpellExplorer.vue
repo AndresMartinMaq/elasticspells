@@ -23,6 +23,9 @@ export default {
     SearchBar,
     SpellCard,
   },
+  mounted() {
+    this.$store.dispatch("getSpells");
+  },
 };
 </script>
 
