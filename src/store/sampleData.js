@@ -224,6 +224,172 @@ const sampleData = [
     ],
     hasFluffImages: true,
   },
+  {
+    name: "Sleet Storm",
+    source: "PHB",
+    page: 276,
+    srd: true,
+    level: 3,
+    school: "C",
+    time: [
+      {
+        number: 1,
+        unit: "action",
+      },
+    ],
+    range: {
+      type: "point",
+      distance: {
+        type: "feet",
+        amount: 150,
+      },
+    },
+    components: {
+      v: true,
+      s: true,
+      m: "a pinch of dust and a few drops of water",
+    },
+    duration: [
+      {
+        type: "timed",
+        duration: {
+          type: "minute",
+          amount: 1,
+        },
+        concentration: true,
+      },
+    ],
+    entries: [
+      "Until the spell ends, freezing rain and sleet fall in a 20-foot-tall cylinder with a 40-foot radius centered on a point you choose within range. The area is heavily obscured, and exposed flames in the area are doused.",
+      "The ground in the area is covered with slick ice, making it {@quickref difficult terrain||3}. When a creature enters the spell's area for the first time on a turn or starts its turn there, it must make a Dexterity saving throw. On a failed save, it falls {@condition prone}.",
+      "If a creature starts its turn in the spell's area and is concentrating on a spell, the creature must make a successful Constitution saving throw against your spell save DC or lose concentration.",
+    ],
+    conditionInflict: ["prone"],
+    savingThrow: ["dexterity", "constitution"],
+    areaTags: ["Y"],
+    classes: {
+      fromClassList: [
+        {
+          name: "Druid",
+          source: "PHB",
+        },
+        {
+          name: "Sorcerer",
+          source: "PHB",
+        },
+        {
+          name: "Wizard",
+          source: "PHB",
+        },
+      ],
+      fromSubclass: [
+        {
+          class: {
+            name: "Cleric",
+            source: "PHB",
+          },
+          subclass: {
+            name: "Tempest",
+            source: "PHB",
+          },
+        },
+        {
+          class: {
+            name: "Druid",
+            source: "PHB",
+          },
+          subclass: {
+            name: "Land",
+            source: "PHB",
+            subSubclass: "Arctic",
+          },
+        },
+        {
+          class: {
+            name: "Warlock",
+            source: "PHB",
+          },
+          subclass: {
+            name: "Lurker in the Deep (UA)",
+            source: "UASorcererAndWarlock",
+          },
+        },
+        {
+          class: {
+            name: "Warlock",
+            source: "PHB",
+          },
+          subclass: {
+            name: "Genie (UA)",
+            source: "UA2020SubclassesRevisited",
+            subSubclass: "Marid",
+          },
+        },
+        {
+          class: {
+            name: "Druid",
+            source: "PHB",
+          },
+          subclass: {
+            name: "Land",
+            source: "PHB",
+          },
+        },
+        {
+          class: {
+            name: "Sorcerer",
+            source: "PHB",
+          },
+          subclass: {
+            name: "Storm (UA)",
+            source: "UAWaterborneAdventures",
+          },
+        },
+        {
+          class: {
+            name: "Warlock",
+            source: "PHB",
+          },
+          subclass: {
+            name: "Fathomless",
+            source: "TCE",
+          },
+        },
+        {
+          class: {
+            name: "Warlock",
+            source: "PHB",
+          },
+          subclass: {
+            name: "Genie",
+            source: "TCE",
+            subSubclass: "Marid",
+          },
+        },
+        {
+          class: {
+            name: "Warlock",
+            source: "PHB",
+          },
+          subclass: {
+            name: "Genie (UA)",
+            source: "UA2020SubclassesRevisited",
+            subSubclass: "Marid",
+          },
+        },
+      ],
+    },
+    races: [
+      {
+        name: "Half-Elf (Mark of Storm)",
+        source: "ERLW",
+        baseName: "Half-Elf",
+        baseSource: "PHB",
+      },
+    ],
+  },
 ];
 
-export default sampleData;
+const sampleDataFiltered = [{ ...sampleData[0] }, { ...sampleData[1] }];
+
+export { sampleDataFiltered, sampleData };
