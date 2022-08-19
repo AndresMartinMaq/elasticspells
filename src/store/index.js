@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import SampleSpells from "./sampleData";
+import { sampleData, sampleDataFireOnly } from "./sampleData";
 
 Vue.use(Vuex);
 
@@ -27,7 +27,25 @@ export default new Vuex.Store({
       context.commit("pending", { action: "getSpells", status: true });
       context.commit("errored", { action: "getSpells", status: false });
 
-      return Promise.resolve(SampleSpells).then((result) => {
+      return Promise.resolve(sampleData).then((result) => {
+        context.commit("pending", { action: "getSpells", status: false });
+        context.commit("storeSpells", result);
+        return result;
+      });
+    },
+    getSpellsFiltered(context, searchTerm) {
+      context.commit("pending", { action: "getSpells", status: true });
+      context.commit("errored", { action: "getSpells", status: false });
+
+      if (searchTerm === "fire") {
+        return Promise.resolve(sampleDataFireOnly).then((result) => {
+          context.commit("pending", { action: "getSpells", status: false });
+          context.commit("storeSpells", result);
+          return result;
+        });
+      }
+
+      return Promise.resolve(sampleData).then((result) => {
         context.commit("pending", { action: "getSpells", status: false });
         context.commit("storeSpells", result);
         return result;
