@@ -1,3 +1,4 @@
+import axios from "@/axios";
 import { sampleData, sampleDataFireOnly } from "./sampleData";
 
 const actions = {
@@ -5,7 +6,7 @@ const actions = {
     context.commit("pending", { action: "getSpells", status: true });
     context.commit("errored", { action: "getSpells", status: false });
 
-    return Promise.resolve(sampleData).then((result) => {
+    return axios.get("/spells").then((result) => {
       context.commit("pending", { action: "getSpells", status: false });
       context.commit("storeSpells", result);
       return result;
