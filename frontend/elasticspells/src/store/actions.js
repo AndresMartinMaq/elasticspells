@@ -1,5 +1,5 @@
 import axios from "@/axios";
-import { sampleData, sampleDataFireOnly } from "./sampleData";
+import { sampleDataFireOnly } from "./sampleData";
 
 const actions = {
   getSpells(context) {
@@ -8,7 +8,7 @@ const actions = {
 
     return axios.get("/spells").then((result) => {
       context.commit("pending", { action: "getSpells", status: false });
-      context.commit("storeSpells", result);
+      context.commit("storeSpells", result.data);
       return result;
     });
   },
@@ -24,9 +24,9 @@ const actions = {
       });
     }
 
-    return Promise.resolve(sampleData).then((result) => {
+    return axios.get("/spells").then((result) => {
       context.commit("pending", { action: "getSpells", status: false });
-      context.commit("storeSpells", result);
+      context.commit("storeSpells", result.data);
       return result;
     });
   },
