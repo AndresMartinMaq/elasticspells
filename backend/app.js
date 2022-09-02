@@ -9,6 +9,7 @@ app.get('/', function (req, res) {
 
 // Serve built frontend. This path is set in frontend/package.json 'build' command
 app.use(express.static(__dirname + '/public/'));
+app.use('/favicon.ico', express.static('public/favicon.ico'));
 
 
 app.listen(PORT, function () {
