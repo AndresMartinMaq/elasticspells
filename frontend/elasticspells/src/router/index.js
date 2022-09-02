@@ -7,6 +7,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: "/",
+    redirect: "/spellbook",
+  },
+  {
     path: "/vue",
     name: "home",
     component: HomeView,
