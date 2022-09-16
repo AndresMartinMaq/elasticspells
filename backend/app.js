@@ -1,7 +1,7 @@
-var express = require('express');
+const express = require('express');
 //const config = require('./lib/config')
 
-var app = express();
+const app = express();
 const PORT = process.env.PORT || 8000
 
 const logic = {}
@@ -46,7 +46,7 @@ app.get('/spells', (req, res, next) => {
 });
 
 
-
+// Start listening!
 app.listen(PORT, function () {
   console.log(`ElasticSpells [Backend] - Listening on http://localhost:${PORT}`);
 });
