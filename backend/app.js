@@ -39,10 +39,17 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/spells', (req, res, next) => {
+app.get('/spells', async (req, res, next) => {
     console.log('Called /spells')
-    const result = logic.spells.getSpells(req, res, next)
-    res.send(result)
+    try {
+        const result = await logic.spells.getSpells(req, res, next)
+        res.send(result)
+    }
+    catch (error) {
+        console.log('ERROR')
+        console.log(error)
+        res.sendStatus(500)
+    }
 });
 
 
