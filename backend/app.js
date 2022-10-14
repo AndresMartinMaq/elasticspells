@@ -46,11 +46,23 @@ app.get('/spells', async (req, res, next) => {
         res.send(result)
     }
     catch (error) {
-        console.log('ERROR')
         console.log(error)
         res.sendStatus(500)
     }
 });
+
+app.get('/spellSearch', async (req, res, next) => {
+    console.log('Called /spellSearch')
+    try {
+        const result = await logic.spells.getSpellsMultiMode(req, res, next)
+        res.send(result)
+    }
+    catch (error) {
+        console.log(error)
+        res.sendStatus(500)
+    }
+});
+// -- Routes (end) --
 
 
 // Start listening!
