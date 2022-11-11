@@ -21,13 +21,15 @@
       </div>
     </fieldset>
     <div class="tips">
-      Feeling uninspired? Try searching:
+      <div>Feeling uninspired?</div>
+      <div>Try these interesting examples:</div>
       <ul>
         <li>storm</li>
         <li>fire</li>
         <li>flame</li>
         <li>flames</li>
         <li>free</li>
+        <li>your finger</li>
       </ul>
     </div>
     <SearchBar :searchMode="searchMode" />
@@ -113,7 +115,7 @@ div.tips ul {
 fieldset {
   position: absolute;
   top: 100px;
-  left: 300px;
+  left: 100px;
 }
 
 fieldset div {
