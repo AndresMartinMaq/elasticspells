@@ -172,5 +172,13 @@ const getInnerEsQuery = (searchTerm, type = "default_fullTermInTitleOrDesc") => 
                 "entries": searchTerm,
             },
         },
+        spellLevelRange: {
+            "range": {
+                "level": {
+                    "gte": searchTerm.split('-')[0],
+                    "lte": searchTerm.split('-')[1] || searchTerm.split('-')[0], // second part is a bit of a hack, probably inefficient way to check equality.
+                }
+            },
+        },
     }[type]
 }

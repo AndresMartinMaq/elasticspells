@@ -19,6 +19,10 @@ const searchModes = [
     value: "fuzzyDesc",
     displayName: "Fuzzy description",
   },
+  {
+    value: "spellLevelRange",
+    displayName: "Spell Level (eg. '3' or '2-4') (inclusive)",
+  },
 ];
 
 export default searchModes;

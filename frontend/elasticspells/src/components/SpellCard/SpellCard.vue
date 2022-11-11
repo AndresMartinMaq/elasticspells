@@ -5,7 +5,8 @@
     <p>
       <span class="inlineTitle">Range:</span><span> {{ range }}ft</span>
     </p>
-    <p><span class="inlineTitle">Componenets:</span> {{ components }}</p>
+    <p><span class="inlineTitle">Components:</span> {{ components }}</p>
+    <p><span class="inlineTitle">Level:</span> {{ level }}</p>
     <hr />
     <div>
       <p v-for="(paragraph, index) in description" :key="index">
@@ -31,12 +32,13 @@ export default {
       type: Number,
       required: true,
     },
-    components: {
-      type: String,
-      default: "V, S, C",
-    },
+    components: String,
     description: {
       type: Array,
+      required: true,
+    },
+    level: {
+      type: Number,
       required: true,
     },
   },

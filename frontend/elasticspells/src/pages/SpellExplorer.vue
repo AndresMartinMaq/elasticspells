@@ -40,6 +40,7 @@
         :range="s.range.distance.amount"
         :components="getComponentsString(s)"
         :description="s.entries"
+        :level="s.level"
       />
     </div>
   </div>
