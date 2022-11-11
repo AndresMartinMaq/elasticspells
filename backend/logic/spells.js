@@ -1,7 +1,7 @@
 const sampleData = require('./sampleData/sampleData');
 const { esClient } = require('../lib/elasticsearch/esClient');
 
-// This file has a lot of comments because it's meant work as a learning/reference document.
+// This file has a lot of comments because it's meant to work as a learning/reference document.
 
 
 // Simplest query 
@@ -97,10 +97,6 @@ exports.getSpellsMultiMode = async (req, res, next) => {
     if (searchMode && !query)
         return res.sendStatus(400)
     
-    return searchSpells(query)
-}
-
-const searchSpells = async (innerQuery) => {
     const esResponse = await esClient.search({
         index: 'elasticspells_spells',
         body: {
@@ -127,6 +123,8 @@ const searchSpells = async (innerQuery) => {
 const getInnerEsQuery = (searchTerm, type = "default_fullTermInTitleOrDesc") => {
     return {
         default_fullTermInTitleOrDesc: {
+            // 'match' and 'multi-match' will only match full words, but may match only one of the given words. 
+            // E.g. "fire ball" will match "fire" or "ball" but not "firefly".
             "multi_match": {
                 query: searchTerm,
                 fields: ["entries", "entriesHigherLevel.entries", "name"],
