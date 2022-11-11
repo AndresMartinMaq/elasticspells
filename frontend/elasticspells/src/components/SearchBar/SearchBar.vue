@@ -12,18 +12,26 @@
 export default {
   name: "SearchBar",
   props: {
-    msg: String,
+    searchMode: String,
   },
   data() {
     return {
       searchTerm: "",
     };
   },
+  watch: {
+    searchMode(newVal, oldVal) {
+      if (newVal !== oldVal) this.search();
+    },
+  },
   methods: {
     search() {
       // TODO search on any keyup + debounce
       console.log("Searching for " + this.searchTerm);
-      this.$store.dispatch("getSpellsFiltered", this.searchTerm);
+      this.$store.dispatch("getSpellsFiltered", {
+        searchTerm: this.searchTerm,
+        searchMode: this.searchMode,
+      });
     },
   },
 };

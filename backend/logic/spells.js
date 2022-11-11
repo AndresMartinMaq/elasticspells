@@ -93,9 +93,11 @@ exports.getSpellsMultiMode = async (req, res, next) => {
     if (!searchTerm)
         return getAllSpells(req, res, next)
     
-    const query = getInnerEsQuery(searchTerm, searchMode)
-    if (searchMode && !query)
+    const innerQuery = getInnerEsQuery(searchTerm, searchMode)
+    if (searchMode && !innerQuery)
         return res.sendStatus(400)
+    
+    console.log(`Searching for [${searchTerm}] - in mode [${searchMode}].`)
     
     const esResponse = await esClient.search({
         index: 'elasticspells_spells',

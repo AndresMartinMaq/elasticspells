@@ -11,15 +11,17 @@ const actions = {
       return result;
     });
   },
-  getSpellsFiltered(context, searchTerm) {
+  getSpellsFiltered(context, { searchTerm, searchMode }) {
     context.commit("pending", { action: "getSpells", status: true });
     context.commit("errored", { action: "getSpells", status: false });
 
-    return axios.get(`/spells?searchTerm=${searchTerm}`).then((result) => {
-      context.commit("pending", { action: "getSpells", status: false });
-      context.commit("storeSpells", result.data);
-      return result;
-    });
+    return axios
+      .get(`/spellSearch?searchTerm=${searchTerm}&searchMode=${searchMode}`)
+      .then((result) => {
+        context.commit("pending", { action: "getSpells", status: false });
+        context.commit("storeSpells", result.data);
+        return result;
+      });
   },
 };
 

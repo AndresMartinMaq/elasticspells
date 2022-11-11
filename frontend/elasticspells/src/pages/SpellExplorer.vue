@@ -1,7 +1,26 @@
 <template>
-  <div class="home">
+  <div>
     <img alt="Spellbook" src="../assets/spellbook1.png" />
-    <SearchBar />
+    <fieldset>
+      <legend>Select a search mode:</legend>
+      <div
+        v-for="mode in searchModes"
+        :key="mode.value"
+        @click="searchMode = mode.value"
+      >
+        <input
+          type="radio"
+          v-model="searchMode"
+          :id="`radioBtn_${mode.value}`"
+          name="searchMode"
+          :value="mode.value"
+        />
+        <label :for="`radioBtn_${mode.value}`">
+          {{ mode.displayName }}
+        </label>
+      </div>
+    </fieldset>
+    <SearchBar :searchMode="searchMode" />
     <div class="spellsArea">
       <SpellCard
         v-for="s in spells"
@@ -20,6 +39,7 @@
 import { mapState } from "vuex";
 import SearchBar from "@/components/SearchBar/SearchBar.vue";
 import SpellCard from "@/components/SpellCard/SpellCard.vue";
+import searchModes from "../sharedConfig/searchModes.js";
 
 export default {
   name: "SpellExplorer",
@@ -27,11 +47,19 @@ export default {
     SearchBar,
     SpellCard,
   },
+  data() {
+    return {
+      searchMode: "default_fullTermInTitleOrDesc",
+    };
+  },
   mounted() {
     this.$store.dispatch("getSpells");
   },
   computed: {
     ...mapState(["spells"]),
+    searchModes() {
+      return searchModes;
+    },
   },
   methods: {
     getCastingTime(spell) {
@@ -58,5 +86,24 @@ export default {
 }
 .home img {
   max-height: 300px;
+}
+
+fieldset {
+  position: absolute;
+  top: 100px;
+  right: 20%;
+}
+
+fieldset div {
+  text-align: left;
+  cursor: pointer;
+  padding: 5px 5px;
+}
+fieldset div:hover {
+  background-color: #fdf1dc;
+}
+fieldset div input,
+fieldset div label {
+  cursor: pointer;
 }
 </style>
