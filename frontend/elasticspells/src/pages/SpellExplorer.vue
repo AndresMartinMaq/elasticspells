@@ -20,6 +20,16 @@
         </label>
       </div>
     </fieldset>
+    <div class="tips">
+      Feeling uninspired? Try searching:
+      <ul>
+        <li>storm</li>
+        <li>fire</li>
+        <li>flame</li>
+        <li>flames</li>
+        <li>free</li>
+      </ul>
+    </div>
     <SearchBar :searchMode="searchMode" />
     <div class="spellsArea">
       <SpellCard
@@ -88,10 +98,21 @@ export default {
   max-height: 300px;
 }
 
+div.tips {
+  position: absolute;
+  top: 120px;
+  right: 355px;
+  text-align: left;
+}
+
+div.tips ul {
+  margin: 5px -15px;
+}
+
 fieldset {
   position: absolute;
   top: 100px;
-  right: 20%;
+  left: 300px;
 }
 
 fieldset div {

@@ -15,6 +15,10 @@ const searchModes = [
     value: "nameAndDescByPartialString",
     displayName: "Partial string in title or description",
   },
+  {
+    value: "fuzzyDesc",
+    displayName: "Fuzzy description",
+  },
 ];
 
 export default searchModes;

@@ -165,6 +165,12 @@ const getInnerEsQuery = (searchTerm, type = "default_fullTermInTitleOrDesc") => 
                     }
                 }
             }
-        }
+        },
+        fuzzyDesc: {
+            // Seems to behave weird when 2 words are provided. E.g. "fire damage"
+            "fuzzy": {
+                "entries": searchTerm,
+            },
+        },
     }[type]
 }
