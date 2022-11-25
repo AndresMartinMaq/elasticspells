@@ -23,6 +23,23 @@ const actions = {
         return result;
       });
   },
+  getSpellsPerDnDClass(context, searchTerm) {
+    context.commit("pending", { action: "getSpellsPerDnDClass", status: true });
+    context.commit("errored", {
+      action: "getSpellsPerDnDClass",
+      status: false,
+    });
+
+    return axios
+      .get(`/spellsPerDnDClass?searchTerm=${searchTerm}`)
+      .then((result) => {
+        context.commit("pending", {
+          action: "getSpellsPerDnDClass",
+          status: false,
+        });
+        return result;
+      });
+  },
 };
 
 export default actions;

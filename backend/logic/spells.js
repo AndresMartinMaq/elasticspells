@@ -1,4 +1,3 @@
-const sampleData = require('./sampleData/sampleData');
 const { esClient } = require('../lib/elasticsearch/esClient');
 
 // This file has a lot of comments because it's meant to work as a learning/reference document.
@@ -98,7 +97,7 @@ exports.getSpellsMultiMode = async (req, res, next) => {
         return res.sendStatus(400)
     
     console.log(`Searching for [${searchTerm}] - in mode [${searchMode}].`)
-    
+
     const esResponse = await esClient.search({
         index: 'elasticspells_spells',
         body: {
@@ -194,6 +193,7 @@ const getInnerEsQuery = (searchTerm, type = "default_fullTermInTitleOrDesc") => 
         },
         fuzzyDesc: {
             // Seems to behave weird when 2 words are provided. E.g. "fire damage" does not match "fire damage".
+            // By default, matches terms within 1 Levenshtein edit distance for terms of 3-5 characters, 2 L.Distance for terms of 6+ characters.
             "fuzzy": {
                 "entries": searchTerm,
             },

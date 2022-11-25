@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8000
 
 const logic = {}
 logic.spells = require('./logic/spells')
+logic.spellAggregations = require('./logic/spell_aggregations')
 
 
 // Serve built frontend. This path is set in frontend/package.json 'build' command
@@ -55,6 +56,19 @@ app.get('/spellSearch', async (req, res, next) => {
     console.log('Called /spellSearch')
     try {
         const result = await logic.spells.getSpellsMultiMode(req, res, next)
+        res.send(result)
+    }
+    catch (error) {
+        console.log(error)
+        res.sendStatus(500)
+    }
+});
+
+
+app.get('/spellsPerDnDClass', async (req, res, next) => {
+    console.log('Called /spellsPerDnDClass')
+    try {
+        const result = await logic.spellAggregations.getNumberOfSpellsPerDnDClass(req, res, next)
         res.send(result)
     }
     catch (error) {

@@ -30,6 +30,8 @@
         <li>flames</li>
         <li>free</li>
         <li>your finger</li>
+        <li>flameable <sup>[sic]</sup> (try fuzzy)</li>
+        <li>The fire spreads (try partial string 3 implementations)</li>
       </ul>
     </div>
     <SearchBar :searchMode="searchMode" />
@@ -45,6 +47,7 @@
         :level="s.level"
       />
     </div>
+    <button @click="buttonClicked">Try an aggregation?</button>
   </div>
 </template>
 
@@ -86,6 +89,9 @@ export default {
         (components.m ? "M" : "")
       );
     },
+    buttonClicked() {
+      this.$store.dispatch("getSpellsPerDnDClass");
+    },
   },
 };
 </script>
@@ -104,7 +110,7 @@ export default {
 div.tips {
   position: absolute;
   top: 120px;
-  right: 355px;
+  right: 260px;
   text-align: left;
 }
 
