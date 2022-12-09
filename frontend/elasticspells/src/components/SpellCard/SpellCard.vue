@@ -12,6 +12,30 @@
       <p v-for="(paragraph, index) in description" :key="index">
         {{ paragraph }}
       </p>
+      <p class="availabilitySection">
+        Available to the following classes:
+        <span
+          v-for="(dndClass, index) in dndClasses.fromClassList"
+          :key="dndClass"
+        >
+          {{
+            dndClass.name +
+            (index + 1 === dndClasses.fromClassList.length ? "." : ",")
+          }}
+        </span>
+      </p>
+      <p v-if="dndClasses.fromSubclass" class="availabilitySection">
+        Available to the following sub-classes:
+        <span
+          v-for="(dndClass, index) in dndClasses.fromSubclass"
+          :key="dndClass"
+        >
+          {{
+            dndClass.class.name +
+            (index + 1 === dndClasses.fromSubclass.length ? "." : ",")
+          }}
+        </span>
+      </p>
     </div>
   </div>
 </template>
@@ -41,6 +65,7 @@ export default {
       type: Number,
       required: true,
     },
+    dndClasses: Object,
   },
 };
 </script>
@@ -58,5 +83,9 @@ h2 {
   width: 20%;
   padding: 5px 20px;
   margin: 10px 10px;
+}
+
+.availabilitySection {
+  color: gray;
 }
 </style>

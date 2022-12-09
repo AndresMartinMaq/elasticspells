@@ -45,6 +45,7 @@
         :components="getComponentsString(s)"
         :description="s.entries"
         :level="s.level"
+        :dndClasses="s.classes"
       />
     </div>
     <div class="aggregationsArea">

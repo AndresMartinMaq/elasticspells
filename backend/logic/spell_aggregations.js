@@ -83,7 +83,7 @@ exports.getNumberOfSpellsPerDnDSubClass = async (req, res, next) => {
         }
     })
 
-    console.log(`Spells of each DnD Class: ${JSON.stringify(result)}`)
+    console.log(`Spells of each DnD SUB-Class: ${JSON.stringify(result)}`)
 
     return result
 }
@@ -119,8 +119,8 @@ exports.getNumberOfSpellsPerDnDClass = async (req, res, next) => {
         }
     })
 
-    console.log(esResponse)
-    console.log(esResponse.aggregations.fromClassListAgg.classNames)
+    //console.log(esResponse)
+    //console.log(esResponse.aggregations.fromClassListAgg.classNames)
 
     const result = esResponse.aggregations.fromClassListAgg.classNames.buckets.map( (bucket) => {
         return { 
