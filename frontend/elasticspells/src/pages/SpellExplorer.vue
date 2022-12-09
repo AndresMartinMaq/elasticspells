@@ -47,7 +47,20 @@
         :level="s.level"
       />
     </div>
-    <button @click="buttonClicked">Try an aggregation?</button>
+    <div class="aggregationsArea">
+      <h2>Aggregations</h2>
+      <div>
+        <p v-if="showNoUiWarning">
+          No UI for this, check Network tab for results
+        </p>
+        <button @click="aggSpellsPerLevelClicked">
+          Get number of spells of each level
+        </button>
+        <button @click="aggSpellsPerClassClicked">
+          Get number of spells of each DnD class
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -66,6 +79,7 @@ export default {
   data() {
     return {
       searchMode: "default_fullTermInTitleOrDesc",
+      showNoUiWarning: false,
     };
   },
   mounted() {
@@ -89,8 +103,13 @@ export default {
         (components.m ? "M" : "")
       );
     },
-    buttonClicked() {
+    aggSpellsPerLevelClicked() {
+      this.$store.dispatch("getNumberOfSpellsOfEachLevel");
+      this.showNoUiWarning = true;
+    },
+    aggSpellsPerClassClicked() {
       this.$store.dispatch("getSpellsPerDnDClass");
+      this.showNoUiWarning = true;
     },
   },
 };
@@ -135,5 +154,9 @@ fieldset div:hover {
 fieldset div input,
 fieldset div label {
   cursor: pointer;
+}
+
+.aggregationsArea button {
+  margin: 0px 10px;
 }
 </style>

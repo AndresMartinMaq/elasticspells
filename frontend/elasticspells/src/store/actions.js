@@ -23,20 +23,17 @@ const actions = {
         return result;
       });
   },
-  getSpellsPerDnDClass(context, searchTerm) {
-    context.commit("pending", { action: "getSpellsPerDnDClass", status: true });
-    context.commit("errored", {
-      action: "getSpellsPerDnDClass",
-      status: false,
-    });
-
+  getNumberOfSpellsOfEachLevel(context, searchTerm) {
     return axios
-      .get(`/spellsPerDnDClass?searchTerm=${searchTerm}`)
+      .get(`/aggs/numberOfSpellsOfEachLevel?searchTerm=${searchTerm}`)
       .then((result) => {
-        context.commit("pending", {
-          action: "getSpellsPerDnDClass",
-          status: false,
-        });
+        return result;
+      });
+  },
+  getSpellsPerDnDClass(context, searchTerm) {
+    return axios
+      .get(`/aggs/spellsPerDnDClass?searchTerm=${searchTerm}`)
+      .then((result) => {
         return result;
       });
   },

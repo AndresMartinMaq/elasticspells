@@ -65,8 +65,20 @@ app.get('/spellSearch', async (req, res, next) => {
 });
 
 
-app.get('/spellsPerDnDClass', async (req, res, next) => {
-    console.log('Called /spellsPerDnDClass')
+app.get('/aggs/numberOfSpellsOfEachLevel', async (req, res, next) => {
+    console.log('Called aggs/numberOfSpellsOfEachLevel')
+    try {
+        const result = await logic.spellAggregations.numberOfSpellsOfEachLevel(req, res, next)
+        res.send(result)
+    }
+    catch (error) {
+        console.log(error)
+        res.sendStatus(500)
+    }
+});
+
+app.get('/aggs/spellsPerDnDClass', async (req, res, next) => {
+    console.log('Called aggs/spellsPerDnDClass')
     try {
         const result = await logic.spellAggregations.getNumberOfSpellsPerDnDClass(req, res, next)
         res.send(result)
