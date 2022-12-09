@@ -50,9 +50,6 @@
     <div class="aggregationsArea">
       <h2>Aggregations</h2>
       <div>
-        <p v-if="showNoUiWarning">
-          No UI for this, check Network tab for results
-        </p>
         <button @click="aggSpellsPerLevelClicked">
           Get number of spells of each level
         </button>
@@ -63,6 +60,10 @@
         <button @click="aggSpellsPerSubClassClicked">
           Get number of spells available through DnD SUB-classes
         </button>
+      </div>
+      <br />
+      <div v-if="aggResponse">
+        {{ aggResponse }}
       </div>
     </div>
   </div>
@@ -83,7 +84,7 @@ export default {
   data() {
     return {
       searchMode: "default_fullTermInTitleOrDesc",
-      showNoUiWarning: false,
+      aggResponse: "",
     };
   },
   mounted() {
@@ -108,16 +109,19 @@ export default {
       );
     },
     aggSpellsPerLevelClicked() {
-      this.$store.dispatch("getNumberOfSpellsOfEachLevel");
-      this.showNoUiWarning = true;
+      this.$store.dispatch("getNumberOfSpellsOfEachLevel").then((resp) => {
+        this.aggResponse = resp.data;
+      });
     },
     aggSpellsPerClassClicked() {
-      this.$store.dispatch("getSpellsPerDnDSubClass");
-      this.showNoUiWarning = true;
+      this.$store.dispatch("getSpellsPerDnDClass").then((resp) => {
+        this.aggResponse = resp.data;
+      });
     },
     aggSpellsPerSubClassClicked() {
-      this.$store.dispatch("getSpellsPerDnDClass");
-      this.showNoUiWarning = true;
+      this.$store.dispatch("getSpellsPerDnDSubClass").then((resp) => {
+        this.aggResponse = resp.data;
+      });
     },
   },
 };
@@ -164,7 +168,22 @@ fieldset div label {
   cursor: pointer;
 }
 
+.aggregationsArea {
+  height: 800px;
+}
+
 .aggregationsArea button {
   margin: 0px 10px;
+  background-color: beige;
+  border: 2px solid firebrick;
+  color: firebrick;
+  padding: 5px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.aggregationsArea button:active {
+  background-color: floralwhite;
+  border: 2px solid salmon;
 }
 </style>
