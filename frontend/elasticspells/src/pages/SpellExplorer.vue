@@ -57,7 +57,11 @@
           Get number of spells of each level
         </button>
         <button @click="aggSpellsPerClassClicked">
-          Get number of spells of each DnD class
+          Get number of spells of each DnD class (example of 'nested'-type
+          aggregation)
+        </button>
+        <button @click="aggSpellsPerSubClassClicked">
+          Get number of spells available through DnD SUB-classes
         </button>
       </div>
     </div>
@@ -108,6 +112,10 @@ export default {
       this.showNoUiWarning = true;
     },
     aggSpellsPerClassClicked() {
+      this.$store.dispatch("getSpellsPerDnDSubClass");
+      this.showNoUiWarning = true;
+    },
+    aggSpellsPerSubClassClicked() {
       this.$store.dispatch("getSpellsPerDnDClass");
       this.showNoUiWarning = true;
     },

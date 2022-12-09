@@ -77,6 +77,18 @@ app.get('/aggs/numberOfSpellsOfEachLevel', async (req, res, next) => {
     }
 });
 
+app.get('/aggs/spellsPerDnDSubClass', async (req, res, next) => {
+    console.log('Called aggs/spellsPerDnDSubClass')
+    try {
+        const result = await logic.spellAggregations.getNumberOfSpellsPerDnDSubClass(req, res, next)
+        res.send(result)
+    }
+    catch (error) {
+        console.log(error)
+        res.sendStatus(500)
+    }
+});
+
 app.get('/aggs/spellsPerDnDClass', async (req, res, next) => {
     console.log('Called aggs/spellsPerDnDClass')
     try {

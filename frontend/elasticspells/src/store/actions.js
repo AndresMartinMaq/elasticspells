@@ -23,19 +23,20 @@ const actions = {
         return result;
       });
   },
-  getNumberOfSpellsOfEachLevel(context, searchTerm) {
-    return axios
-      .get(`/aggs/numberOfSpellsOfEachLevel?searchTerm=${searchTerm}`)
-      .then((result) => {
-        return result;
-      });
+  getNumberOfSpellsOfEachLevel() {
+    return axios.get(`/aggs/numberOfSpellsOfEachLevel`).then((result) => {
+      return result;
+    });
   },
-  getSpellsPerDnDClass(context, searchTerm) {
-    return axios
-      .get(`/aggs/spellsPerDnDClass?searchTerm=${searchTerm}`)
-      .then((result) => {
-        return result;
-      });
+  getSpellsPerDnDClass() {
+    return axios.get(`/aggs/spellsPerDnDClass?searchTerm`).then((result) => {
+      return result;
+    });
+  },
+  getSpellsPerDnDSubClass() {
+    return axios.get(`/aggs/spellsPerDnDSubClass?searchTerm`).then((result) => {
+      return result;
+    });
   },
 };
 
