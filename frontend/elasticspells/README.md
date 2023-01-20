@@ -11,13 +11,16 @@ yarn install
 
 Seed:
 Run  `node scripts/createSpellsIndex.js`
+
 Run  `node scripts/addSampleDataToElastic.js`
 
 If you ever need to reset your elasticsearch data, delete indexes (I use elasticvue for this) and re-run the above to recreate and seed.
 
 ### How to run
 Need to run both backend and frontend.
+
 Backend - go to path /backend, then run `npm run dev`
+
 Frontend - go to path /frontend/elasticspells, run `npm run serve`
 
 
@@ -40,9 +43,13 @@ yarn lint
 
 ## Things that could be added
 Make the linter consistent between the backend and the frontend.
+
 Make it prefer single quotes.
+
 Make it use css modules like bit-jobs has.
+
 Break up routes into separate files.
+
 Use express router.
 
 ## Customize configuration
