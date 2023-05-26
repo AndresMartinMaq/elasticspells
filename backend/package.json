@@ -4,7 +4,7 @@
   "description": "A small project to practice vue, node, elasticsearch",
   "main": "app.js",
   "scripts": {
-    "test": "npm run test",
+    "test": "echo 'This backend does not have any tests yet! But if it did, they would have run now.'",
     "dev": "NODE_ENV=development nodemon app.js"
   },
   "author": "Andres Martin Maqueda",
