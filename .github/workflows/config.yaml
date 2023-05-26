@@ -38,3 +38,25 @@ jobs:
         run: npm run test
       - name: Try Deploying                                         # do this in a separate job? why yes, why not.
         run: echo 'TODO deploying this thing!'
+
+  test-frontend:
+    runs-on: ubuntu-latest
+    needs: my-job-that-checks-node-version
+    defaults:
+      run:
+        working-directory: ./frontend/elasticspells/
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          cache: 'npm'
+          cache-dependency-path: frontend/elasticspells/package-lock.json           # Needed when your package-lock.json is not in the root
+      - name: 'Run npm install (npm clean-install)'
+        run: npm clean-install
+      - run: npm run lint
+      - run: npm run build
+      - name: Run Jest unit tests
+        run: npm run test
+      - name: Try Deploying                                         # do this in a separate job? why yes, why not.
+        run: echo 'TODO deploying this thing!'
