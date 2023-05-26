@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: '14'
           cache: 'npm' # TODO find out what this does exactly
-          cache-dependecy-path: backend/package-lock.json           # Needed when your package-lock.json is not in the root
+          cache-dependency-path: backend/package-lock.json           # Needed when your package-lock.json is not in the root
       - run: node -v
       - name: 'Run npm install (npm clean-install)'
         run: npm ci                                                 # `npm ci` or `npm clean-install` is a comand similar to `npm install` designed for CI/CD
