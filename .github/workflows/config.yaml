@@ -30,7 +30,7 @@ jobs:
           cache-dependency-path: backend/package-lock.json           # Needed when your package-lock.json is not in the root
       - run: node -v
       - name: 'Run npm install (npm clean-install)'
-        run: npm ci                                                 # `npm ci` or `npm clean-install` is a comand similar to `npm install` designed for CI/CD
+        run: cd backend; npm ci                                      # `npm ci` or `npm clean-install` is a comand similar to `npm install` designed for CI/CD
       - run: npm run build --if-present
       - name: Run backend tests
         run: npm run test
