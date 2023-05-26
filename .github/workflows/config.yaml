@@ -25,7 +25,6 @@ jobs:
         working-directory: ./backend/                                 # prepending run commands with `cd backend` also works, but ofc this is nicer.
     steps:
       - uses: actions/checkout@v3
-      - run: cd backend
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
