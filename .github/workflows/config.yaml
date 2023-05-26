@@ -22,12 +22,12 @@ jobs:
     needs: my-job-that-checks-node-version
     steps:
       - uses: actions/checkout@v3
+      - run: cd backend
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
           cache: 'npm' # TODO find out what this does exactly
       - run: node -v
-      - run: cd backend
       - name: 'Run npm install (npm clean-install)'
         run: npm ci                                                 # `npm ci` or `npm clean-install` is a comand similar to `npm install` designed for CI/CD
       - run: npm run build --if-present
