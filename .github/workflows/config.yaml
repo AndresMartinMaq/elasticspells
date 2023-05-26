@@ -27,6 +27,7 @@ jobs:
           node-version: '14'
           cache: 'npm' # TODO find out what this does exactly
       - run: node -v
+      - run: cd backend
       - name: 'Run npm install (npm clean-install)'
         run: npm ci                                                 # `npm ci` or `npm clean-install` is a comand similar to `npm install` designed for CI/CD
       - run: npm run build --if-present
