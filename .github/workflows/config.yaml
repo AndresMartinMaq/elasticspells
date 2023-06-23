@@ -5,7 +5,7 @@ on:
     branches: 
       - master
   pull_request:
-    branches: [ $default-branch ]
+    branches: [ $default-branch ]                    # Makes it run when a pull request is created that will merge _into_ the default branch (typically, master)
 
 jobs:
 
@@ -28,17 +28,17 @@ jobs:
     needs: my-job-that-checks-node-version
     defaults:
       run:
-        working-directory: ./backend/                                 # prepending run commands with `cd backend` also works, but ofc this is nicer.
+        working-directory: ./backend/                                # prepending run commands with `cd backend` also works, but ofc this is nicer.
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
           cache: 'npm' # TODO find out what this does exactly
-          cache-dependency-path: backend/package-lock.json           # Needed when your package-lock.json is not in the root
+          cache-dependency-path: backend/package-lock.json          # Needed when your package-lock.json is not in the root
       - run: node -v
       - name: 'Run npm install (npm clean-install)'
-        run: npm ci                                      # `npm ci` or `npm clean-install` is a comand similar to `npm install` designed for CI/CD
+        run: npm ci                                                 # `npm ci` or `npm clean-install` is a comand similar to `npm install` designed for CI/CD
       - run: npm run build --if-present
       - name: Run backend tests
         run: npm run test
@@ -67,5 +67,5 @@ jobs:
       - run: npm run build
       - name: Run Jest unit tests
         run: npm run test:unit
-      - name: Try Deploying                                         # do this in a separate job? why yes, why not.
+      - name: Try Deploying                                         # do this in a separate job? why yes? why not?
         run: echo 'TODO deploying this thing!'
